@@ -264,7 +264,7 @@
           </ul>
           <div>
             <p>This blog was rendered `,`</p>
-            <p>The source for this blog can be found <a href="todo">here</a>, please feel free to steal it and use it for your own projects</p>
+            <p>The source for this blog can be found <a target="_blank" href="https://github.com/thepassle/blog">here</a>, please feel free to steal it and use it for your own projects</p>
           </div>
         </footer>
       </body>
