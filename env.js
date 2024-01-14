@@ -1,0 +1,1 @@
+export const ENV = !!globalThis?.Netlify ? 'server' : 'worker';

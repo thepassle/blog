@@ -1,0 +1,26 @@
+{
+  "name": "passle-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "npm run build && netlify dev",
+    "build": "npm run md-to-html && npm run bundle-sw",
+    "md-to-html": "node md-to-html.js",
+    "bundle-sw": "esbuild sw.js --bundle --outfile=public/sw.js --minify --sourcemap --format=iife"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "swtl": "^0.1.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.19.11",
+    "front-matter": "4.0.2",
+    "marked": "11.1.1",
+    "marked-highlight": "2.1.0",
+    "shikiji": "0.9.19"
+  }
+}
