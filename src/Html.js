@@ -220,11 +220,9 @@ export function Html({title, children}) {
           }
 
           @media (max-width: 600px) {
-
             nav {
               margin-left: auto;
               margin-right: auto;
-              max-width: 200px;
             }
 
             footer {
