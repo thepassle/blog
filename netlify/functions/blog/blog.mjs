@@ -5,5 +5,6 @@ export default async (request, context) => {
 };
 
 export const config = {
-  path: ['/', '/foo', '/blog/*', '/thoughts/*', '/definitions']
+  path: ['/*', '/foo', '/blog/*', '/thoughts/*', '/definitions'],
+  preferStatic: true
 };
