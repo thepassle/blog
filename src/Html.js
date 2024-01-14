@@ -215,6 +215,10 @@ export function Html({title, children}) {
             font-weight: 700;
           }
 
+          .selected {
+            text-decoration: underline;
+          }
+
           @media (max-width: 600px) {
 
             nav {

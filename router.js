@@ -64,22 +64,21 @@ export const router = new Router({
     {
       path: '/definitions',
       render: ({url, params, query, request}) => { 
-
         return html`
           <${Html} title="Home">
             <h2>Definitions</h2>
             <article class="post">
               <dl>
                 <dt id="buildless-development"><a href="#buildless-development">Buildless development</a></dt>
-                <dd>Local development using native ESM and web standards; code that you write runs in the browser without any transformation. Note that does not include Vite; Vite does a bunch of non-standard transformations and (pre-)bundling out of the box.</dd>
+                <dd class="${url.hash === '#buildless-development' ? 'selected' : ''}">Local development using native ESM and web standards; code that you write runs in the browser without any transformation. Note that does not include Vite; Vite does a bunch of non-standard transformations and (pre-)bundling out of the box.</dd>
               </dl>
               <dl>
                 <dt id="swsr"><a href="#swsr">SWSR</a></dt>
-                <dd>Service Worker Side Rendering. SSR, but in a Service Worker.</dd>
+                <dd class="${url.hash === '#swsr' ? 'selected' : ''}">Service Worker Side Rendering. SSR, but in a Service Worker.</dd>
               </dl>
               <dl>
                 <dt id="swtl"><a href="#swtl">SWTL</a></dt>
-                <dd>Service Worker Templating Language.</dd>
+                <dd class="${url.hash === '#swtl' ? 'selected' : ''}">Service Worker Templating Language.</dd>
               </dl>
             </article>
           <//>
