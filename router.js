@@ -11,7 +11,7 @@ export const router = new Router({
         const overview = fetch(url.origin + '/output/overview.html');
 
         return html`
-          <${Html} title="Home">
+          <${Html} title="Passle">
             <h2>Overview</h2>
             ${overview}
           <//>
@@ -24,7 +24,7 @@ export const router = new Router({
         const overview = fetch(url.origin + '/output/blog/overview.html');
 
         return html`
-          <${Html} title="Home">
+          <${Html} title="Blog">
             <h2>Blogs</h2>
             ${overview}
           <//>
@@ -51,7 +51,7 @@ export const router = new Router({
         const overview = fetch(url.origin + '/output/thoughts/overview.html');
 
         return html`
-          <${Html} title="Home">
+          <${Html} title="Thoughts">
             <h2>Thoughts</h2>
             <p class="larger-text">
               Not quite blogs, not quite tweets. Something in between. Likely opinionated, potentially wrong. Subject to change over time.
@@ -65,7 +65,7 @@ export const router = new Router({
       path: '/definitions',
       render: ({url, params, query, request}) => { 
         return html`
-          <${Html} title="Home">
+          <${Html} title="Definitions">
             <h2>Definitions</h2>
             <article class="post">
               <dl>
@@ -102,7 +102,6 @@ export const router = new Router({
     {
       path: '/foo',
       render: ({url, params, query, request}) => {
-        console.log(url);
         return html`
           <${Html} title="Foo">
             <h2>Foo</h2>
