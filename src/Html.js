@@ -201,7 +201,7 @@ export function Html({title, children}) {
           }
 
           .larger-text {
-            line-height: 1.4em;
+            line-height: 1.45em;
             font-size: 22px;
           }
 
@@ -211,7 +211,7 @@ export function Html({title, children}) {
           }
 
           .post p {
-            line-height: 1.4em;
+            line-height: 1.45em;
           }
 
           .post p code {
@@ -230,6 +230,10 @@ export function Html({title, children}) {
             nav {
               margin-left: auto;
               margin-right: auto;
+            }
+
+            article img {
+              max-width: 320px;
             }
 
             footer {

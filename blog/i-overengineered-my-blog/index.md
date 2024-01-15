@@ -72,6 +72,12 @@ Very annoyingly, most of the time I spent working on my blog was spent on the `m
 
 Once I had the script setup, working with it was fairly straightforward. I'm already a big fan of [Astro](https://astro.build/), but writing all this md-to-html logic myself definitely has given me a new appreciation for it. _But_ blogs are to be overengineered, so here we are.
 
+What's also kind of cool, if not a bit overkill, is that not only am I using **SWTL** on the server and in the service worker, but also in the `md-to-html.js` script itself.
+
+```js
+writeFileSync('./public/output/overview.html', await renderToString(html`<ul>${overview}</ul>`));
+```
+
 ## Future work
 
 As mentioned, there are a bunch of things to be improved yet, like handling OG information, the RSS feed, and some other small things, but at this point I just want to put something out there and share what I have. Is a blog ever really finished anyway?
