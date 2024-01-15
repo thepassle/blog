@@ -12,7 +12,7 @@ updated: 2024-01-14
 
 I've been interested in Service Worker templating for a while now, largely inspired by [Jeff Posnick](https://jeffy.info/)'s work. Last year, I explored **[SWSR](/definitions#swsr)** and created a library called **[SWTL](https://github.com/thepassle/swtl)**, which this blog is built with.
 
-**SWTL** is a Service Worker Templating Language for component-like templating in service workers. With it, you can streams templates to the browser as they're being parsed, and it can be used on the client side (in a, well, service worker), in Node(/Bun/Deno) processes, as well as other serverless, edge, or otherwise worker-like environments. You can read more about **SWTL** [here](/blog/service-worker-templating-language-(swtl)/).
+**SWTL** is a Service Worker Templating Language for component-like templating in service workers. With it, you can stream templates to the browser as they're being parsed, and it can be used on the client side (in a, well, service worker), in Node(/Bun/Deno) processes, as well as other serverless, edge, or otherwise worker-like environments. You can read more about **SWTL** [here](/blog/service-worker-templating-language-(swtl)/).
 
 I strongly believe that when you build a library or tool, you have to eat your own dogfood and actually build some projects with it yourself. I've used **SWTL** for a couple of small projects, as well as an internal project at work, and I've been wanting to build a personal blog for a while now as opposed to hosting all my content on [dev.to](https://dev.to/thepassle) only, so it seemed as good a time as any.
 

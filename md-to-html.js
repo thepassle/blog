@@ -126,8 +126,8 @@ function createHtml({title, description, updated, kind}) {
     <li class="overview-li">
       <a href="/${kind}/${title.toLowerCase().split(' ').join('-')}">
         <article class="overview-item">
-          <h3>${capitalize(kind === 'thoughts' ? 'thought' : 'blog')}: ${title}</h3>
-          <p class="date">${date.toISOString().split('T')[0]}</p>
+          <h3>${title}</h3>
+          <p class="date">${date.toISOString().split('T')[0]}, ${capitalize(kind === 'thoughts' ? 'thought' : 'blog')}</p>
           <p class="description">${description}</p>
         </article>
       </a>

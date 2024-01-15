@@ -1,4 +1,4 @@
-(()=>{var _=Object.freeze,I=Object.defineProperty;var O=(e,t)=>_(I(e,"raw",{value:_(t||e.slice())}));var k=Symbol("component"),E=Symbol("await");var y="TEXT",$="COMPONENT",f="NONE",b="PROP",v="CHILDREN",w="SET_PROP",A="PROP_VAL";function*p(e,...t){if(!t.length)yield*e;else if(!t.some(i=>typeof i=="function"))yield*e.reduce((i,r,l)=>[...i,r,...t.length>l?[t[l]]:[]],[]);else{let i=y,r=f,l=f,a=[];for(let o=0;o<e.length;o++){let s="",u={kind:k,properties:[],children:[],fn:void 0};for(let n=0;n<e[o].length;n++){let c=e[o][n];if(i===y)c==="<"&&!e[o][n+1]&&typeof t[o]=="function"?(i=$,u.fn=t[o],a.push(u)):s+=c;else if(i===$)if(r===b){let h=a[a.length-1],x=h?.properties[h.properties.length-1];if(l===w){let d="";for(;e[o][n]!=="="&&e[o][n]!=="/"&&e[o][n]!==">"&&e[o][n]!=='"'&&e[o][n]!=="'"&&e[o][n]!==" "&&d!=="...";)d+=e[o][n],n++;if(e[o][n]==="=")l=A;else if(e[o][n]==="/"&&r===b){r=f,l=f;let g=a.pop();a.length||(s="",yield g)}else e[o][n]===">"&&r===b&&(r=v,l=f);d==="..."?h.properties.push(...Object.entries(t[o]).map(([g,j])=>({name:g,value:j}))):d&&h.properties.push({name:d,value:!0})}else if(l===A){if(e[o][n]==='"'||e[o][n]==="'"){let d=e[o][n];if(!e[o][n+1])x.value=t[o],l=w;else{let g="";for(n++;e[o][n]!==d;)g+=e[o][n],n++;x.value=g||"",l=w}}else if(e[o][n-1]){let d="";for(;e[o][n]!==" "&&e[o][n]!=="/"&&e[o][n]!==">";)d+=e[o][n],n++;if(x.value=d||"",l=w,e[o][n]==="/"){let g=a.pop();a.length||(yield g)}}else if(x.value=t[o-1],l=w,e[o][n]===">")l=f,r=v;else if(e[o][n]==="/"){let d=a.pop();a.length||(l=f,r=f,i=y,n++,yield d)}}}else if(r===v){let h=a[a.length-1];if(e[o][n]==="<"&&e[o][n+1]==="/"&&e[o][n+2]==="/"){s&&(h.children.push(s),s=""),n+=3;let x=a.pop();a.length||(i=y,r=f,yield x)}else e[o][n]==="<"&&!e[o][n+1]&&typeof t[o]=="function"?(s&&(h.children.push(s),s=""),r=b,l=w,u.fn=t[o],a.push(u)):e[o][n+1]?s+=e[o][n]:s&&h&&(s+=e[o][n],h.children.push(s))}else if(c===">")r=v;else if(c===" ")r=b,l=w;else if(c==="/"&&e[o][n+1]===">"){i=y,r=f;let h=a.pop();a.length||(s="",yield h),n++}else s+=c;else s+=c}r===v&&t.length>o&&a[a.length-1].children.push(t[o]),s&&r!==v&&(yield s),a.length>1&&u.fn&&a[a.length-2].children.push(u),t.length>o&&i!==$&&(yield t[o])}}}function C({promise:e,children:t}){return{promise:e,template:t.find(i=>typeof i=="function")}}C.kind=E;function B(e){return typeof e.getReader=="function"}async function*H(e){let t=e.getReader(),i=new TextDecoder("utf-8");try{for(;;){let{done:r,value:l}=await t.read();if(r)return;yield i.decode(l)}}finally{t.releaseLock()}}async function*V(e){if(B(e))for await(let t of H(e))yield t;else for await(let t of e)yield t}async function*T(e,t){if(typeof e=="string")yield e;else if(typeof e=="function")yield*T(e(),t);else if(Array.isArray(e))yield*P(e,t);else if(typeof e?.then=="function"){let i=await e;yield*T(i,t)}else if(e instanceof Response&&e.body)yield*V(e.body);else if(e?.[Symbol.asyncIterator]||e?.[Symbol.iterator])yield*P(e,t);else if(e?.fn?.kind===E){let{promise:i,template:r}=e.fn({...e.properties.reduce((a,o)=>({...a,[o.name]:o.value}),{}),children:e.children}),l=t.length;t.push(i().then(a=>({id:l,template:r({pending:!1,error:!1,success:!0},a,null)})).catch(a=>(console.error(a.stack),{id:l,template:r({pending:!1,error:!0,success:!1},null,a)}))),yield*P(p`<awaiting-promise style="display: contents;" data-id="${l.toString()}">${r({pending:!0,error:!1,success:!1},null,null)}</awaiting-promise>`,t)}else if(e?.kind===k)yield*T(await e.fn({...e.properties.reduce((i,r)=>({...i,[r.name]:r.value}),{}),children:e.children}),t);else{let i=e?.toString();i==="[object Object]"?yield JSON.stringify(e):yield i}}async function*P(e,t){for await(let i of e)yield*T(i,t)}var W;async function*R(e){let t=[];for(yield*P(e,t),t=t.map(i=>{let r=i.then(l=>(t.splice(t.indexOf(r),1),l));return r});t.length>0;){let i=await Promise.race(t),{id:r,template:l}=i;yield*R(p(W||(W=O([`
+(()=>{var _=Object.freeze,B=Object.defineProperty;var O=(e,t)=>_(B(e,"raw",{value:_(t||e.slice())}));var k=Symbol("component"),T=Symbol("await");var y="TEXT",$="COMPONENT",f="NONE",b="PROP",v="CHILDREN",w="SET_PROP",A="PROP_VAL";function*p(e,...t){if(!t.length)yield*e;else if(!t.some(i=>typeof i=="function"))yield*e.reduce((i,r,l)=>[...i,r,...t.length>l?[t[l]]:[]],[]);else{let i=y,r=f,l=f,a=[];for(let o=0;o<e.length;o++){let s="",u={kind:k,properties:[],children:[],fn:void 0};for(let n=0;n<e[o].length;n++){let c=e[o][n];if(i===y)c==="<"&&!e[o][n+1]&&typeof t[o]=="function"?(i=$,u.fn=t[o],a.push(u)):s+=c;else if(i===$)if(r===b){let h=a[a.length-1],x=h?.properties[h.properties.length-1];if(l===w){let d="";for(;e[o][n]!=="="&&e[o][n]!=="/"&&e[o][n]!==">"&&e[o][n]!=='"'&&e[o][n]!=="'"&&e[o][n]!==" "&&d!=="...";)d+=e[o][n],n++;if(e[o][n]==="=")l=A;else if(e[o][n]==="/"&&r===b){r=f,l=f;let g=a.pop();a.length||(s="",yield g)}else e[o][n]===">"&&r===b&&(r=v,l=f);d==="..."?h.properties.push(...Object.entries(t[o]).map(([g,j])=>({name:g,value:j}))):d&&h.properties.push({name:d,value:!0})}else if(l===A){if(e[o][n]==='"'||e[o][n]==="'"){let d=e[o][n];if(!e[o][n+1])x.value=t[o],l=w;else{let g="";for(n++;e[o][n]!==d;)g+=e[o][n],n++;x.value=g||"",l=w}}else if(e[o][n-1]){let d="";for(;e[o][n]!==" "&&e[o][n]!=="/"&&e[o][n]!==">";)d+=e[o][n],n++;if(x.value=d||"",l=w,e[o][n]==="/"){let g=a.pop();a.length||(yield g)}}else if(x.value=t[o-1],l=w,e[o][n]===">")l=f,r=v;else if(e[o][n]==="/"){let d=a.pop();a.length||(l=f,r=f,i=y,n++,yield d)}}}else if(r===v){let h=a[a.length-1];if(e[o][n]==="<"&&e[o][n+1]==="/"&&e[o][n+2]==="/"){s&&(h.children.push(s),s=""),n+=3;let x=a.pop();a.length||(i=y,r=f,yield x)}else e[o][n]==="<"&&!e[o][n+1]&&typeof t[o]=="function"?(s&&(h.children.push(s),s=""),r=b,l=w,u.fn=t[o],a.push(u)):e[o][n+1]?s+=e[o][n]:s&&h&&(s+=e[o][n],h.children.push(s))}else if(c===">")r=v;else if(c===" ")r=b,l=w;else if(c==="/"&&e[o][n+1]===">"){i=y,r=f;let h=a.pop();a.length||(s="",yield h),n++}else s+=c;else s+=c}r===v&&t.length>o&&a[a.length-1].children.push(t[o]),s&&r!==v&&(yield s),a.length>1&&u.fn&&a[a.length-2].children.push(u),t.length>o&&i!==$&&(yield t[o])}}}function C({promise:e,children:t}){return{promise:e,template:t.find(i=>typeof i=="function")}}C.kind=T;function I(e){return typeof e.getReader=="function"}async function*V(e){let t=e.getReader(),i=new TextDecoder("utf-8");try{for(;;){let{done:r,value:l}=await t.read();if(r)return;yield i.decode(l)}}finally{t.releaseLock()}}async function*U(e){if(I(e))for await(let t of V(e))yield t;else for await(let t of e)yield t}async function*E(e,t){if(typeof e=="string")yield e;else if(typeof e=="function")yield*E(e(),t);else if(Array.isArray(e))yield*P(e,t);else if(typeof e?.then=="function"){let i=await e;yield*E(i,t)}else if(e instanceof Response&&e.body)yield*U(e.body);else if(e?.[Symbol.asyncIterator]||e?.[Symbol.iterator])yield*P(e,t);else if(e?.fn?.kind===T){let{promise:i,template:r}=e.fn({...e.properties.reduce((a,o)=>({...a,[o.name]:o.value}),{}),children:e.children}),l=t.length;t.push(i().then(a=>({id:l,template:r({pending:!1,error:!1,success:!0},a,null)})).catch(a=>(console.error(a.stack),{id:l,template:r({pending:!1,error:!0,success:!1},null,a)}))),yield*P(p`<awaiting-promise style="display: contents;" data-id="${l.toString()}">${r({pending:!0,error:!1,success:!1},null,null)}</awaiting-promise>`,t)}else if(e?.kind===k)yield*E(await e.fn({...e.properties.reduce((i,r)=>({...i,[r.name]:r.value}),{}),children:e.children}),t);else{let i=e?.toString();i==="[object Object]"?yield JSON.stringify(e):yield i}}async function*P(e,t){for await(let i of e)yield*E(i,t)}var W;async function*R(e){let t=[];for(yield*P(e,t),t=t.map(i=>{let r=i.then(l=>(t.splice(t.indexOf(r),1),l));return r});t.length>0;){let i=await Promise.race(t),{id:r,template:l}=i;yield*R(p(W||(W=O([`
       <template data-id="`,'">',`</template>
       <script>
         {
@@ -18,6 +18,7 @@
         <style>
           body {
             font-family: Arial, Helvetica, sans-serif;
+            font-size: 1.15em;
           }
 
           header,
@@ -51,14 +52,19 @@
 
           nav ul {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             margin: 0;
             padding: 0;
             list-style: none;
           }
 
+          nav ul li {
+            margin: 10px;
+          }
+
           h1 {
             color: white;
+            margin-top: 60px;
 
             text-shadow:
             2px 2px 0 #000,
@@ -91,6 +97,7 @@
             gap: 60px;
             padding: 20px;
             margin-top: 80px;
+            margin-bottom: 80px;
           }
 
           footer div > p {
@@ -225,11 +232,9 @@
           }
 
           @media (max-width: 600px) {
-
             nav {
               margin-left: auto;
               margin-right: auto;
-              max-width: 200px;
             }
 
             footer {
@@ -311,12 +316,12 @@
       <\/script>
     </html>
   `])),e??"",t,L==="server"?"on the server":"in a service worker",L==="worker")}function q(e){let t=e.toLowerCase().split("-").join(" ");return"Passle blog - "+t.charAt(0).toUpperCase()+t.slice(1)}var D=new S({routes:[{path:"/",render:({url:e,params:t,query:i,request:r})=>{let l=fetch(e.origin+"/output/overview.html");return p`
-          <${m} title="Home">
+          <${m} title="Passle">
             <h2>Overview</h2>
             ${l}
           <//>
         `}},{path:"/blog",render:({url:e,params:t,query:i,request:r})=>{let l=fetch(e.origin+"/output/blog/overview.html");return p`
-          <${m} title="Home">
+          <${m} title="Blog">
             <h2>Blogs</h2>
             ${l}
           <//>
@@ -327,7 +332,7 @@
             </article>
           <//>
         `}},{path:"/thoughts",render:({url:e,params:t,query:i,request:r})=>{let l=fetch(e.origin+"/output/thoughts/overview.html");return p`
-          <${m} title="Home">
+          <${m} title="Thoughts">
             <h2>Thoughts</h2>
             <p class="larger-text">
               Not quite blogs, not quite tweets. Something in between. Likely opinionated, potentially wrong. Subject to change over time.
@@ -335,7 +340,7 @@
             ${l}
           <//>
         `}},{path:"/definitions",render:({url:e,params:t,query:i,request:r})=>p`
-          <${m} title="Home">
+          <${m} title="Definitions">
             <h2>Definitions</h2>
             <article class="post">
               <dl>
@@ -358,9 +363,9 @@
               ${l}
             </article>
           <//>
-        `}},{path:"/foo",render:({url:e,params:t,query:i,request:r})=>(console.log(e),p`
+        `}},{path:"/foo",render:({url:e,params:t,query:i,request:r})=>p`
           <${m} title="Foo">
             <h2>Foo</h2>
           <//>
-        `)}]});self.addEventListener("install",()=>{self.skipWaiting()});self.addEventListener("activate",e=>{e.waitUntil(clients.claim().then(()=>{self.clients.matchAll().then(t=>{t.forEach(i=>i.postMessage({type:"SW_ACTIVATED"}))})}))});self.addEventListener("fetch",e=>{e.request.mode==="navigate"&&e.respondWith(D.handleRequest(e.request))});})();
+        `}]});self.addEventListener("install",()=>{self.skipWaiting()});self.addEventListener("activate",e=>{e.waitUntil(clients.claim().then(()=>{self.clients.matchAll().then(t=>{t.forEach(i=>i.postMessage({type:"SW_ACTIVATED"}))})}))});self.addEventListener("fetch",e=>{e.request.mode==="navigate"&&e.respondWith(D.handleRequest(e.request))});})();
 //# sourceMappingURL=sw.js.map

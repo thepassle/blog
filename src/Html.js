@@ -13,6 +13,7 @@ export function Html({title, children}) {
         <style>
           body {
             font-family: Arial, Helvetica, sans-serif;
+            font-size: 1.15em;
           }
 
           header,
@@ -46,14 +47,19 @@ export function Html({title, children}) {
 
           nav ul {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             margin: 0;
             padding: 0;
             list-style: none;
           }
 
+          nav ul li {
+            margin: 10px;
+          }
+
           h1 {
             color: white;
+            margin-top: 60px;
 
             text-shadow:
             2px 2px 0 #000,
@@ -86,6 +92,7 @@ export function Html({title, children}) {
             gap: 60px;
             padding: 20px;
             margin-top: 80px;
+            margin-bottom: 80px;
           }
 
           footer div > p {
