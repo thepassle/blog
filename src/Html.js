@@ -12,7 +12,7 @@ export function Html({title, children}) {
         <title>${title ?? ''}</title>
         <style>
           body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: system-ui;
             font-size: 1.15em;
           }
 
