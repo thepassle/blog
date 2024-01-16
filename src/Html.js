@@ -35,6 +35,7 @@ export function Html({title, children}) {
 
           .shiki {
             padding: 20px;
+            line-height: 1.5em;
             border: solid 2px black;
             transition: box-shadow 0.2s ease-in-out;
           }

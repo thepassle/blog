@@ -40,6 +40,7 @@
 
           .shiki {
             padding: 20px;
+            line-height: 1.5em;
             border: solid 2px black;
             transition: box-shadow 0.2s ease-in-out;
           }
@@ -349,7 +350,7 @@
             <article class="post">
               <dl>
                 <dt id="buildless-development"><a href="#buildless-development">Buildless development</a></dt>
-                <dd class="${e.hash==="#buildless-development"?"selected":""}">Local development using native ESM and web standards; code that you write runs in the browser without any transformation. Note that does not include Vite; Vite does a bunch of non-standard transformations and (pre-)bundling out of the box.</dd>
+                <dd class="${e.hash==="#buildless-development"?"selected":""}">Local development using native ESM and web standards; code that you write runs in the browser without any transformation. Note that this does not include Vite; Vite does a bunch of non-standard transformations and (pre-)bundling out of the box.</dd>
               </dl>
               <dl>
                 <dt id="swsr"><a href="#swsr">SWSR</a></dt>
