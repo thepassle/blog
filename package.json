@@ -7,7 +7,7 @@
   "scripts": {
     "start": "npm run build && netlify dev",
     "build": "npm run md-to-html && npm run bundle-sw",
-    "deploy": "netlify deploy --build --dir=public --prod",
+    "deploy": "npm run build && netlify deploy --build --dir=public --prod",
     "md-to-html": "node md-to-html.js",
     "bundle-sw": "esbuild sw.js --bundle --outfile=public/sw.js --minify --sourcemap --format=iife"
   },
