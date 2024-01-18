@@ -4,7 +4,7 @@ description: Component-like templating in service workers, or other worker-like 
 updated: 2023-08-19
 ---
 
-# Service Worker Templating Language (SWLT)
+# Service Worker Templating Language (SWTL)
 
 > Check out the starter project [here](https://github.com/thepassle/swtl-starter).
 

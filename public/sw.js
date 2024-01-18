@@ -1,4 +1,4 @@
-(()=>{var _=Object.freeze,B=Object.defineProperty;var O=(e,t)=>_(B(e,"raw",{value:_(t||e.slice())}));var k=Symbol("component"),T=Symbol("await");var y="TEXT",$="COMPONENT",f="NONE",b="PROP",v="CHILDREN",w="SET_PROP",C="PROP_VAL";function*p(e,...t){if(!t.length)yield*e;else if(!t.some(i=>typeof i=="function"))yield*e.reduce((i,r,l)=>[...i,r,...t.length>l?[t[l]]:[]],[]);else{let i=y,r=f,l=f,a=[];for(let o=0;o<e.length;o++){let s="",u={kind:k,properties:[],children:[],fn:void 0};for(let n=0;n<e[o].length;n++){let c=e[o][n];if(i===y)c==="<"&&!e[o][n+1]&&typeof t[o]=="function"?(i=$,u.fn=t[o],a.push(u)):s+=c;else if(i===$)if(r===b){let h=a[a.length-1],x=h?.properties[h.properties.length-1];if(l===w){let d="";for(;e[o][n]!=="="&&e[o][n]!=="/"&&e[o][n]!==">"&&e[o][n]!=='"'&&e[o][n]!=="'"&&e[o][n]!==" "&&d!=="...";)d+=e[o][n],n++;if(e[o][n]==="=")l=C;else if(e[o][n]==="/"&&r===b){r=f,l=f;let g=a.pop();a.length||(s="",yield g)}else e[o][n]===">"&&r===b&&(r=v,l=f);d==="..."?h.properties.push(...Object.entries(t[o]).map(([g,j])=>({name:g,value:j}))):d&&h.properties.push({name:d,value:!0})}else if(l===C){if(e[o][n]==='"'||e[o][n]==="'"){let d=e[o][n];if(!e[o][n+1])x.value=t[o],l=w;else{let g="";for(n++;e[o][n]!==d;)g+=e[o][n],n++;x.value=g||"",l=w}}else if(e[o][n-1]){let d="";for(;e[o][n]!==" "&&e[o][n]!=="/"&&e[o][n]!==">";)d+=e[o][n],n++;if(x.value=d||"",l=w,e[o][n]==="/"){let g=a.pop();a.length||(yield g)}}else if(x.value=t[o-1],l=w,e[o][n]===">")l=f,r=v;else if(e[o][n]==="/"){let d=a.pop();a.length||(l=f,r=f,i=y,n++,yield d)}}}else if(r===v){let h=a[a.length-1];if(e[o][n]==="<"&&e[o][n+1]==="/"&&e[o][n+2]==="/"){s&&(h.children.push(s),s=""),n+=3;let x=a.pop();a.length||(i=y,r=f,yield x)}else e[o][n]==="<"&&!e[o][n+1]&&typeof t[o]=="function"?(s&&(h.children.push(s),s=""),r=b,l=w,u.fn=t[o],a.push(u)):e[o][n+1]?s+=e[o][n]:s&&h&&(s+=e[o][n],h.children.push(s))}else if(c===">")r=v;else if(c===" ")r=b,l=w;else if(c==="/"&&e[o][n+1]===">"){i=y,r=f;let h=a.pop();a.length||(s="",yield h),n++}else s+=c;else s+=c}r===v&&t.length>o&&a[a.length-1].children.push(t[o]),s&&r!==v&&(yield s),a.length>1&&u.fn&&a[a.length-2].children.push(u),t.length>o&&i!==$&&(yield t[o])}}}function A({promise:e,children:t}){return{promise:e,template:t.find(i=>typeof i=="function")}}A.kind=T;function I(e){return typeof e.getReader=="function"}async function*V(e){let t=e.getReader(),i=new TextDecoder("utf-8");try{for(;;){let{done:r,value:l}=await t.read();if(r)return;yield i.decode(l)}}finally{t.releaseLock()}}async function*U(e){if(I(e))for await(let t of V(e))yield t;else for await(let t of e)yield t}async function*E(e,t){if(typeof e=="string")yield e;else if(typeof e=="function")yield*E(e(),t);else if(Array.isArray(e))yield*P(e,t);else if(typeof e?.then=="function"){let i=await e;yield*E(i,t)}else if(e instanceof Response&&e.body)yield*U(e.body);else if(e?.[Symbol.asyncIterator]||e?.[Symbol.iterator])yield*P(e,t);else if(e?.fn?.kind===T){let{promise:i,template:r}=e.fn({...e.properties.reduce((a,o)=>({...a,[o.name]:o.value}),{}),children:e.children}),l=t.length;t.push(i().then(a=>({id:l,template:r({pending:!1,error:!1,success:!0},a,null)})).catch(a=>(console.error(a.stack),{id:l,template:r({pending:!1,error:!0,success:!1},null,a)}))),yield*P(p`<awaiting-promise style="display: contents;" data-id="${l.toString()}">${r({pending:!0,error:!1,success:!1},null,null)}</awaiting-promise>`,t)}else if(e?.kind===k)yield*E(await e.fn({...e.properties.reduce((i,r)=>({...i,[r.name]:r.value}),{}),children:e.children}),t);else{let i=e?.toString();i==="[object Object]"?yield JSON.stringify(e):yield i}}async function*P(e,t){for await(let i of e)yield*E(i,t)}var W;async function*R(e){let t=[];for(yield*P(e,t),t=t.map(i=>{let r=i.then(l=>(t.splice(t.indexOf(r),1),l));return r});t.length>0;){let i=await Promise.race(t),{id:r,template:l}=i;yield*R(p(W||(W=O([`
+(()=>{var M=Object.freeze,U=Object.defineProperty;var O=(e,t)=>M(U(e,"raw",{value:M(t||e.slice())}));var k=Symbol("component"),T=Symbol("await"),P=Symbol("slot");var y="TEXT",_="COMPONENT",g="NONE",b="PROP",v="CHILDREN",w="SET_PROP",A="PROP_VAL";function*p(e,...t){if(!t.length)yield*e;else if(!t.some(l=>typeof l=="function"))yield*e.reduce((l,n,i)=>[...l,n,...t.length>i?[t[i]]:[]],[]);else{let l=y,n=g,i=g,r=[];for(let o=0;o<e.length;o++){let s="",f={kind:k,slots:{},properties:[],children:[],fn:void 0};for(let a=0;a<e[o].length;a++){let c=e[o][a];if(l===y)c==="<"&&!e[o][a+1]&&typeof t[o]=="function"?(l=_,f.fn=t[o],r.push(f)):s+=c;else if(l===_)if(n===b){let h=r[r.length-1],x=h?.properties[h.properties.length-1];if(i===w){let d="";for(;e[o][a]!=="="&&e[o][a]!=="/"&&e[o][a]!==">"&&e[o][a]!=='"'&&e[o][a]!=="'"&&e[o][a]!==" "&&d!=="...";)d+=e[o][a],a++;if(e[o][a]==="=")i=A;else if(e[o][a]==="/"&&n===b){n=g,i=g;let u=r.pop();r.length||(s="",yield u)}else e[o][a]===">"&&n===b&&(n=v,i=g);d==="..."?h.properties.push(...Object.entries(t[o]).map(([u,I])=>({name:u,value:I}))):d&&h.properties.push({name:d,value:!0})}else if(i===A){if(e[o][a]==='"'||e[o][a]==="'"){let d=e[o][a];if(!e[o][a+1])x.value=t[o],i=w;else{let u="";for(a++;e[o][a]!==d;)u+=e[o][a],a++;x.value=u||"",i=w}}else if(e[o][a-1]){let d="";for(;e[o][a]!==" "&&e[o][a]!=="/"&&e[o][a]!==">";)d+=e[o][a],a++;if(x.value=d||"",i=w,e[o][a]==="/"){let u=r.pop();r.length||(yield u)}}else if(x.value=t[o-1],i=w,e[o][a]===">")i=g,n=v;else if(e[o][a]==="/"){let d=r.pop();r.length||(i=g,n=g,l=y,a++,yield d)}}}else if(n===v){let h=r[r.length-1];if(e[o][a]==="<"&&e[o][a+1]==="/"&&e[o][a+2]==="/"){s&&(h.children.push(s),s=""),a+=3;let x=r.pop();r.length||(l=y,n=g,yield x)}else e[o][a]==="<"&&!e[o][a+1]&&typeof t[o]=="function"?(s&&(h.children.push(s),s=""),n=b,i=w,f.fn=t[o],r.push(f)):e[o][a+1]?s+=e[o][a]:s&&h&&(s+=e[o][a],h.children.push(s))}else if(c===">")n=v;else if(c===" ")n=b,i=w;else if(c==="/"&&e[o][a+1]===">"){l=y,n=g;let h=r.pop();r.length||(s="",yield h),a++}else s+=c;else s+=c}n===v&&t.length>o&&r[r.length-1].children.push(t[o]),s&&n!==v&&(yield s),r.length>1&&f.fn&&r[r.length-2].children.push(f),t.length>o&&l!==_&&(yield t[o])}}}function W({promise:e,children:t}){return{promise:e,template:t.find(l=>typeof l=="function")}}W.kind=T;function Y(e){return typeof e.getReader=="function"}async function*V(e){let t=e.getReader(),l=new TextDecoder("utf-8");try{for(;;){let{done:n,value:i}=await t.read();if(n)return;yield l.decode(i)}}finally{t.releaseLock()}}async function*F(e){if(Y(e))for await(let t of V(e))yield t;else for await(let t of e)yield t}async function*E(e,t){if(typeof e=="string")yield e;else if(typeof e=="function")yield*E(e(),t);else if(Array.isArray(e))yield*R(e,t);else if(typeof e?.then=="function"){let l=await e;yield*E(l,t)}else if(e instanceof Response&&e.body)yield*F(e.body);else if(e?.[Symbol.asyncIterator]||e?.[Symbol.iterator])yield*R(e,t);else if(e?.fn?.kind===T){let{promise:l,template:n}=e.fn({...e.properties.reduce((r,o)=>({...r,[o.name]:o.value}),{}),children:e.children}),i=t.length;t.push(l().then(r=>({id:i,template:n({pending:!1,error:!1,success:!0},r,null)})).catch(r=>(console.error(r.stack),{id:i,template:n({pending:!1,error:!0,success:!1},null,r)}))),yield*R(p`<awaiting-promise style="display: contents;" data-id="${i.toString()}">${n({pending:!0,error:!1,success:!1},null,null)}</awaiting-promise>`,t)}else if(e?.kind===k){let l=[],n={};for(let i of e.children)if(i?.fn?.kind===P){let r=i.properties.find(o=>o.name==="name")?.value||"default";n[r]=i.children}else l.push(i);yield*E(await e.fn({...e.properties.reduce((i,r)=>({...i,[r.name]:r.value}),{}),children:l,slots:n}),t)}else{let l=e?.toString();l==="[object Object]"?yield JSON.stringify(e):yield l}}async function*R(e,t){for await(let l of e)yield*E(l,t)}var B;async function*L(e){let t=[];for(yield*R(e,t),t=t.map(l=>{let n=l.then(i=>(t.splice(t.indexOf(n),1),i));return n});t.length>0;){let l=await Promise.race(t),{id:n,template:i}=l;yield*L(p(B||(B=O([`
       <template data-id="`,'">',`</template>
       <script>
         {
@@ -7,7 +7,7 @@
           toReplace.replaceWith(template);
         }
       <\/script>
-    `])),r.toString(),l,r.toString(),r.toString()))}}var S=class{constructor({routes:t,fallback:i,plugins:r=[],baseHref:l=""}){this.plugins=r,this.fallback={render:i,params:{}},this.routes=t.map(a=>({...a,urlPattern:new URLPattern({pathname:`${l}${a.path}`,search:"*",hash:"*"})}))}_getPlugins(t){return[...this.plugins??[],...t?.plugins??[]]}async handleRequest(t){let i=new URL(t.url),r;for(let a of this.routes){let o=a.urlPattern.exec(i);if(o){r={render:a.render,params:o?.pathname?.groups??{},plugins:a.plugins};break}}let l=r?.render??this?.fallback?.render;if(l){let a=new URL(t.url),o=Object.fromEntries(new URLSearchParams(a.search)),s=r?.params,u=this._getPlugins(r);for(let n of u)try{let c=await n?.beforeResponse({url:a,query:o,params:s,request:t});if(c)return c}catch(c){throw console.log(`Plugin "${n.name}" error on beforeResponse hook`,c),c}return new N(await l({url:a,query:o,params:s,request:t}))}}},N=class{constructor(t){let i=R(t),r=new TextEncoder,l=new ReadableStream({async pull(a){try{let{value:o,done:s}=await i.next();s?a.close():a.enqueue(r.encode(o))}catch(o){throw console.error(o.stack),o}}});return new Response(l,{status:200,headers:{"Content-Type":"text/html","Transfer-Encoding":"chunked"}})}};var L=globalThis?.Netlify?"server":"worker";var M;function m({title:e,children:t}){return p(M||(M=O([`
+    `])),n.toString(),i,n.toString(),n.toString()))}}var S=class{constructor({routes:t,fallback:l,plugins:n=[],baseHref:i=""}){this.plugins=n,this.fallback={render:l,params:{}},this.routes=t.map(r=>({...r,urlPattern:new URLPattern({pathname:`${i}${r.path}`,search:"*",hash:"*"})}))}_getPlugins(t){return[...this.plugins??[],...t?.plugins??[]]}async handleRequest(t){let l=new URL(t.url),n;for(let r of this.routes){let o=r.urlPattern.exec(l);if(o){n={options:r.options,render:r.render,params:o?.pathname?.groups??{},plugins:r.plugins};break}}let i=n?.render??this?.fallback?.render;if(i){let r=new URL(t.url),o=Object.fromEntries(new URLSearchParams(r.search)),s=n?.params,f=this._getPlugins(n);for(let a of f)try{let c=await a?.beforeResponse({url:r,query:o,params:s,request:t});if(c)return c}catch(c){throw console.log(`Plugin "${a.name}" error on beforeResponse hook`,c),c}return new N(await i({url:r,query:o,params:s,request:t}),n?.options??{})}}},N=class{constructor(t,l={}){let n=L(t),i=new TextEncoder,r=new ReadableStream({async pull(o){try{let{value:s,done:f}=await n.next();f?o.close():o.enqueue(i.encode(s))}catch(s){throw console.error(s.stack),s}}});return new Response(r,{status:200,headers:{"Content-Type":"text/html","Transfer-Encoding":"chunked",...l?.headers??{}},...l})}};function $(){}$.kind=P;var q=globalThis?.Netlify?"server":"worker";var D;function m({title:e,children:t,slots:l}){return p(D||(D=O([`
     <!DOCTYPE html>
     <html lang="en">
       <head>
@@ -15,6 +15,8 @@
         <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
         <meta name="Description" content="Passle blog">
         <title>`,`</title>
+
+        `,`
         <style>
           body {
             font-family: system-ui;
@@ -320,31 +322,46 @@
 
       <\/script>
     </html>
-  `])),e??"",t,L==="server"?"on the server":"in a service worker",L==="worker")}function q(e){let t=e.toLowerCase().split("-").join(" ");return"Passle blog - "+t.charAt(0).toUpperCase()+t.slice(1)}var D=new S({routes:[{path:"/",render:({url:e,params:t,query:i,request:r})=>{let l=fetch(e.origin+"/output/overview.html");return p`
+  `])),e??"",l?.head??"",t,q==="server"?"on the server":"in a service worker",q==="worker")}function C(e){let t=e.toLowerCase().split("-").join(" ");return t.charAt(0).toUpperCase()+t.slice(1)}var j=new S({routes:[{path:"/",render:({url:e,params:t,query:l,request:n})=>{let i=fetch(e.origin+"/output/overview.html");return p`
           <${m} title="Passle">
             <h2>Overview</h2>
-            ${l}
+            ${i}
           <//>
-        `}},{path:"/blog",render:({url:e,params:t,query:i,request:r})=>{let l=fetch(e.origin+"/output/blog/overview.html");return p`
+        `}},{path:"/blog",render:({url:e,params:t,query:l,request:n})=>{let i=fetch(e.origin+"/output/blog/overview.html");return p`
           <${m} title="Blog">
             <h2>Blogs</h2>
-            ${l}
+            ${i}
           <//>
-        `}},{path:"/blog/:title",render:({url:e,params:t,query:i,request:r})=>{let l=fetch(e.origin+"/output/blog/"+t.title+"/index.html");return p`
-          <${m} title="${q(t.title)}">
+        `}},{path:"/blog/:title",render:({url:e,params:t,query:l,request:n})=>{let i=fetch(e.origin+"/output/blog/"+t.title+"/index.html"),r=C(t.title),o=`${e.origin}/blog/${t.title}`;return p`
+          <${m} title="${"Passle blog - "+r}"> 
+
+            <${$} name="head">
+              <meta property="og:url" content="${o}"/>
+              <meta property="og:type" content="website"/>
+              <meta property="og:title" content="${r}"/>
+              <meta property="og:description" content="Passle blog"/>
+              <meta property="og:image" content="/og/${t.title}"/>
+
+              <meta name="twitter:card" content="summary_large_image"/>
+              <meta property="twitter:url" content="${o}"/>
+              <meta name="twitter:title" content="${r}"/>
+              <meta name="twitter:description" content="Passle blog"/>
+              <meta name="twitter:image" content="/og/${t.title}"/>
+            <//>
+
             <article class="post">
-              ${l}
+              ${i}
             </article>
           <//>
-        `}},{path:"/thoughts",render:({url:e,params:t,query:i,request:r})=>{let l=fetch(e.origin+"/output/thoughts/overview.html");return p`
+        `}},{path:"/thoughts",render:({url:e,params:t,query:l,request:n})=>{let i=fetch(e.origin+"/output/thoughts/overview.html");return p`
           <${m} title="Thoughts">
             <h2>Thoughts</h2>
             <p class="larger-text">
               Not quite blogs, not quite tweets. Something in between. Likely opinionated, potentially wrong. Subject to change over time.
             </p>
-            ${l}
+            ${i}
           <//>
-        `}},{path:"/definitions",render:({url:e,params:t,query:i,request:r})=>p`
+        `}},{path:"/definitions",render:({url:e,params:t,query:l,request:n})=>p`
           <${m} title="Definitions">
             <h2>Definitions</h2>
             <article class="post">
@@ -362,15 +379,29 @@
               </dl>
             </article>
           <//>
-        `},{path:"/thoughts/:title",render:({url:e,params:t,query:i,request:r})=>{let l=fetch(e.origin+"/output/thoughts/"+t.title+"/index.html");return p`
-          <${m} title="${q(t.title)}">
+        `},{path:"/thoughts/:title",render:({url:e,params:t,query:l,request:n})=>{let i=fetch(e.origin+"/output/thoughts/"+t.title+"/index.html"),r=C(t.title),o=`${e.origin}/thought/${t.title}`;return p`
+          <${m} title="${"Passle blog - "+r}">
+            <${$} name="head">
+              <meta property="og:url" content="${o}"/>
+              <meta property="og:type" content="website"/>
+              <meta property="og:title" content="${r}"/>
+              <meta property="og:description" content="Passle blog"/>
+              <meta property="og:image" content="/og/${t.title}"/>
+
+              <meta name="twitter:card" content="summary_large_image"/>
+              <meta property="twitter:url" content="${o}"/>
+              <meta name="twitter:title" content="${r}"/>
+              <meta name="twitter:description" content="Passle blog"/>
+              <meta name="twitter:image" content="/og/${t.title}"/>
+            <//>
+
             <article class="post">
-              ${l}
+              ${i}
             </article>
           <//>
-        `}},{path:"/foo",render:({url:e,params:t,query:i,request:r})=>p`
+        `}},{path:"/foo",render:({url:e,params:t,query:l,request:n})=>p`
           <${m} title="Foo">
             <h2>Foo</h2>
           <//>
-        `}]});self.addEventListener("install",()=>{self.skipWaiting()});self.addEventListener("activate",e=>{e.waitUntil(clients.claim().then(()=>{self.clients.matchAll().then(t=>{t.forEach(i=>i.postMessage({type:"SW_ACTIVATED"}))})}))});self.addEventListener("fetch",e=>{e.request.mode==="navigate"&&e.respondWith(D.handleRequest(e.request))});})();
+        `}]});self.addEventListener("install",()=>{self.skipWaiting()});self.addEventListener("activate",e=>{e.waitUntil(clients.claim().then(()=>{self.clients.matchAll().then(t=>{t.forEach(l=>l.postMessage({type:"SW_ACTIVATED"}))})}))});self.addEventListener("fetch",e=>{e.request.mode==="navigate"&&e.respondWith(j.handleRequest(e.request))});})();
 //# sourceMappingURL=sw.js.map

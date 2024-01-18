@@ -1,4 +1,4 @@
-import { html, Router } from 'swtl';
+import { html, Router, Slot } from 'swtl';
 import { Html } from './src/Html.js';
 import { title } from './src/utils.js';
 import { ENV } from './env.js';
@@ -36,8 +36,26 @@ export const router = new Router({
       render: ({url, params, query, request}) => {
         const blog = fetch(url.origin + '/output/blog/' + params.title + '/index.html');
 
+        const blogTitle = title(params.title);
+        const blogUrl = `${url.origin}/blog/${params.title}`;
+
         return html`
-          <${Html} title="${title(params.title)}">
+          <${Html} title="${"Passle blog - " + blogTitle}"> 
+
+            <${Slot} name="head">
+              <meta property="og:url" content="${blogUrl}"/>
+              <meta property="og:type" content="website"/>
+              <meta property="og:title" content="${blogTitle}"/>
+              <meta property="og:description" content="Passle blog"/>
+              <meta property="og:image" content="/og/${params.title}"/>
+
+              <meta name="twitter:card" content="summary_large_image"/>
+              <meta property="twitter:url" content="${blogUrl}"/>
+              <meta name="twitter:title" content="${blogTitle}"/>
+              <meta name="twitter:description" content="Passle blog"/>
+              <meta name="twitter:image" content="/og/${params.title}"/>
+            <//>
+
             <article class="post">
               ${blog}
             </article>
@@ -88,12 +106,29 @@ export const router = new Router({
     {
       path: '/thoughts/:title',
       render: ({url, params, query, request}) => {
-        const blog = fetch(url.origin + '/output/thoughts/' + params.title + '/index.html');
+        const thought = fetch(url.origin + '/output/thoughts/' + params.title + '/index.html');
+
+        const thoughtTitle = title(params.title);
+        const thoughtUrl = `${url.origin}/thought/${params.title}`;
 
         return html`
-          <${Html} title="${title(params.title)}">
+          <${Html} title="${"Passle blog - " + thoughtTitle}">
+            <${Slot} name="head">
+              <meta property="og:url" content="${thoughtUrl}"/>
+              <meta property="og:type" content="website"/>
+              <meta property="og:title" content="${thoughtTitle}"/>
+              <meta property="og:description" content="Passle blog"/>
+              <meta property="og:image" content="/og/${params.title}"/>
+
+              <meta name="twitter:card" content="summary_large_image"/>
+              <meta property="twitter:url" content="${thoughtUrl}"/>
+              <meta name="twitter:title" content="${thoughtTitle}"/>
+              <meta name="twitter:description" content="Passle blog"/>
+              <meta name="twitter:image" content="/og/${params.title}"/>
+            <//>
+
             <article class="post">
-              ${blog}
+              ${thought}
             </article>
           <//>
         `

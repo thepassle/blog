@@ -1,4 +1,5 @@
 import { Marked } from 'marked';
+import puppeteer from 'puppeteer';
 import { markedHighlight } from 'marked-highlight';
 import { getHighlighter } from 'shikiji'
 import fm from 'front-matter';
@@ -79,6 +80,7 @@ function createParser(overview, kind) {
 
 for (const dir of [
   './public/output', 
+  './public/output/og', 
   './public/output/blog', 
   './public/output/thoughts'
 ]) {
@@ -151,6 +153,84 @@ writeFileSync('./public/output/overview.html', await renderToString(html`<ul>${o
 writeFileSync('./public/output/blog/overview.html', await renderToString(html`<ul>${blogsOverview}</ul>`));
 writeFileSync('./public/output/thoughts/overview.html', await renderToString(html`<ul>${thoughtsOverview}</ul>`));
 
+/**
+ * Create OG images
+ */
+
+const browser = await puppeteer.launch({
+  headless: true,
+});
+
+for (const post of [...posts.thoughts, ...posts.blog]) {
+  const page = await browser.newPage();
+  await page.setViewport({
+    width: 1200,
+    height: 630,
+  });
+
+  await page.setContent(await renderToString(html`
+      <html>
+        <head>
+          <style>
+            * {
+              font-family: system-ui;
+              font-size: 1.15em;
+            }
+
+            h1 {
+              font-size: 60px;
+              color: white;
+              margin-top: 40px;
+
+              text-shadow:
+              2px 2px 0 #000,
+              -1px -1px 0 #000,  
+              1px -1px 0 #000,
+              -1px 1px 0 #000,
+              1px 1px 0 #000;
+              text-align: center;
+            }
+
+            h2 {
+              font-size: 65px;
+              margin-top: 50px;
+            }
+
+            p {
+              font-size: 35px;
+            }
+
+            .card {
+              height: calc(100% - 2.3em);
+              width: calc(100% - 2.3em);
+              margin: auto;
+              border: solid 2px black;
+              padding: 20px;
+              box-shadow: 3px 3px 3px black;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="card">
+            <h1>PASSLE</h1>
+            <h2>${post.title}</h2>
+            <p>${post.description}</p>
+          </div>
+        </body>
+      </html>
+    `), {
+    waitUntil: 'networkidle0',
+  });
+
+  const screenshotBuffer = await page.screenshot({
+    fullPage: false,
+    type: 'png',
+    path: `./public/output/og/${post.title.toLowerCase().split(' ').join('-')}.png`
+  });
+
+  await page.close();
+}
+await browser.close();
 
 /**
  * @TODO

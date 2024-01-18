@@ -1,7 +1,7 @@
 import { html } from 'swtl';
 import { ENV } from '../env.js';
 
-export function Html({title, children}) {
+export function Html({title, children, slots}) {
   return html`
     <!DOCTYPE html>
     <html lang="en">
@@ -10,6 +10,8 @@ export function Html({title, children}) {
         <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
         <meta name="Description" content="Passle blog">
         <title>${title ?? ''}</title>
+
+        ${slots?.head ?? ''}
         <style>
           body {
             font-family: system-ui;
