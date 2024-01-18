@@ -47,13 +47,13 @@ export const router = new Router({
               <meta property="og:type" content="website"/>
               <meta property="og:title" content="${blogTitle}"/>
               <meta property="og:description" content="Passle blog"/>
-              <meta property="og:image" content="/og/${params.title}"/>
+              <meta property="og:image" content="${url.origin}/output/og/${params.title}.png"/>
 
               <meta name="twitter:card" content="summary_large_image"/>
               <meta property="twitter:url" content="${blogUrl}"/>
               <meta name="twitter:title" content="${blogTitle}"/>
               <meta name="twitter:description" content="Passle blog"/>
-              <meta name="twitter:image" content="/og/${params.title}"/>
+              <meta name="twitter:image" content="${url.origin}/output/og/${params.title}.png"/>
             <//>
 
             <article class="post">
@@ -118,13 +118,13 @@ export const router = new Router({
               <meta property="og:type" content="website"/>
               <meta property="og:title" content="${thoughtTitle}"/>
               <meta property="og:description" content="Passle blog"/>
-              <meta property="og:image" content="/og/${params.title}"/>
+              <meta property="og:image" content="${url.origin}/output/og/${params.title}.png"/>
 
               <meta name="twitter:card" content="summary_large_image"/>
               <meta property="twitter:url" content="${thoughtUrl}"/>
               <meta name="twitter:title" content="${thoughtTitle}"/>
               <meta name="twitter:description" content="Passle blog"/>
-              <meta name="twitter:image" content="/og/${params.title}"/>
+              <meta name="twitter:image" content="${url.origin}/output/og/${params.title}.png"/>
             <//>
 
             <article class="post">
