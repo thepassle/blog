@@ -43,15 +43,20 @@ export const router = new Router({
           <${Html} title="${"Passle blog - " + blogTitle}"> 
 
             <${Slot} name="head">
+              <meta property="og:site_name" content="Passle blog">
               <meta property="og:url" content="${blogUrl}"/>
               <meta property="og:type" content="website"/>
               <meta property="og:title" content="${blogTitle}"/>
               <meta property="og:description" content="Passle blog"/>
               <meta property="og:image" content="${url.origin}/output/og/${params.title}.png"/>
+              <meta property="og:image:alt" content="${blogTitle}"/>
 
+              <meta content="@passle_" name="twitter:site"/>
+              <meta content="@passle_" name="twitter:creator"/>
               <meta name="twitter:card" content="summary_large_image"/>
-              <meta property="twitter:url" content="${blogUrl}"/>
+              <meta name="twitter:url" content="${blogUrl}"/>
               <meta name="twitter:title" content="${blogTitle}"/>
+              <meta name="twitter:image:alt" content="${blogTitle}">
               <meta name="twitter:description" content="Passle blog"/>
               <meta name="twitter:image" content="${url.origin}/output/og/${params.title}.png"/>
               <meta name="twitter:image:src" content="${url.origin}/output/og/${params.title}.png" />
@@ -111,20 +116,25 @@ export const router = new Router({
         const thought = fetch(url.origin + '/output/thoughts/' + params.title + '/index.html');
 
         const thoughtTitle = title(params.title);
-        const thoughtUrl = `${url.origin}/thought/${params.title}`;
+        const thoughtUrl = `${url.origin}/thoughts/${params.title}`;
 
         return html`
           <${Html} title="${"Passle blog - " + thoughtTitle}">
             <${Slot} name="head">
+              <meta property="og:site_name" content="Passle blog">
               <meta property="og:url" content="${thoughtUrl}"/>
               <meta property="og:type" content="website"/>
               <meta property="og:title" content="${thoughtTitle}"/>
               <meta property="og:description" content="Passle blog"/>
               <meta property="og:image" content="${url.origin}/output/og/${params.title}.png"/>
+              <meta property="og:image:alt" content="${thoughtTitle}"/>
 
+              <meta content="@passle_" name="twitter:site"/>
+              <meta content="@passle_" name="twitter:creator"/>
               <meta name="twitter:card" content="summary_large_image"/>
-              <meta property="twitter:url" content="${thoughtUrl}"/>
+              <meta name="twitter:url" content="${thoughtUrl}"/>
               <meta name="twitter:title" content="${thoughtTitle}"/>
+              <meta name="twitter:image:alt" content="${thoughtTitle}">
               <meta name="twitter:description" content="Passle blog"/>
               <meta name="twitter:image" content="${url.origin}/output/og/${params.title}.png"/>
               <meta name="twitter:image:src" content="${url.origin}/output/og/${params.title}.png" />

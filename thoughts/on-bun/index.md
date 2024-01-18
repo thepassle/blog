@@ -1,6 +1,6 @@
 ---
 title: On Bun
-description: Standardization is a good thing
+description: And why standardization is a good thing
 updated: 2024-01-17
 ---
 # On Bun

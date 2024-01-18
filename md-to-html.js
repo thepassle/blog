@@ -177,36 +177,41 @@ for (const post of [...posts.thoughts, ...posts.blog]) {
               font-size: 1.15em;
             }
 
+            body {
+              margin: 20px;
+            }
+
             h1 {
-              font-size: 60px;
+              font-size: 80px;
               color: white;
-              margin-top: 40px;
+              margin-top: 30px;
 
               text-shadow:
-              2px 2px 0 #000,
-              -1px -1px 0 #000,  
-              1px -1px 0 #000,
-              -1px 1px 0 #000,
-              1px 1px 0 #000;
+              4px 4px 0 #000,
+              -2px -2px 0 #000,  
+              2px -2px 0 #000,
+              -2px 2px 0 #000,
+              2px 2px 0 #000;
               text-align: center;
             }
 
             h2 {
-              font-size: 65px;
-              margin-top: 50px;
+              font-size: 75px;
+              margin-top: 45px;
+              margin-bottom: 35px;
             }
 
             p {
-              font-size: 35px;
+              font-size: 43px;
             }
 
             .card {
               height: calc(100% - 2.3em);
               width: calc(100% - 2.3em);
               margin: auto;
-              border: solid 2px black;
+              border: solid 4px black;
               padding: 20px;
-              box-shadow: 3px 3px 3px black;
+              box-shadow: 6px 6px 6px black;
             }
           </style>
         </head>
