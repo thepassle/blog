@@ -340,13 +340,13 @@
               <meta property="og:type" content="website"/>
               <meta property="og:title" content="${r}"/>
               <meta property="og:description" content="Passle blog"/>
-              <meta property="og:image" content="/og/${t.title}"/>
+              <meta property="og:image" content="${e.origin}/output/og/${t.title}.png"/>
 
               <meta name="twitter:card" content="summary_large_image"/>
               <meta property="twitter:url" content="${o}"/>
               <meta name="twitter:title" content="${r}"/>
               <meta name="twitter:description" content="Passle blog"/>
-              <meta name="twitter:image" content="/og/${t.title}"/>
+              <meta name="twitter:image" content="${e.origin}/output/og/${t.title}.png"/>
             <//>
 
             <article class="post">
@@ -386,13 +386,13 @@
               <meta property="og:type" content="website"/>
               <meta property="og:title" content="${r}"/>
               <meta property="og:description" content="Passle blog"/>
-              <meta property="og:image" content="/og/${t.title}"/>
+              <meta property="og:image" content="${e.origin}/output/og/${t.title}.png"/>
 
               <meta name="twitter:card" content="summary_large_image"/>
               <meta property="twitter:url" content="${o}"/>
               <meta name="twitter:title" content="${r}"/>
               <meta name="twitter:description" content="Passle blog"/>
-              <meta name="twitter:image" content="/og/${t.title}"/>
+              <meta name="twitter:image" content="${e.origin}/output/og/${t.title}.png"/>
             <//>
 
             <article class="post">
