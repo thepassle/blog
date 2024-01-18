@@ -138,7 +138,6 @@ export const router = new Router({
               <meta name="twitter:description" content="Passle blog"/>
               <meta name="twitter:image" content="${url.origin}/output/og/${params.title}.png"/>
               <meta name="twitter:image:src" content="${url.origin}/output/og/${params.title}.png" />
-
             <//>
 
             <article class="post">

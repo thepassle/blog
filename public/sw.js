@@ -402,8 +402,8 @@
               <meta name="twitter:card" content="summary_large_image"/>
               <meta name="twitter:url" content="${o}"/>
               <meta name="twitter:title" content="${n}"/>
-              <meta name="twitter:description" content="Passle blog"/>
               <meta name="twitter:image:alt" content="${n}">
+              <meta name="twitter:description" content="Passle blog"/>
               <meta name="twitter:image" content="${e.origin}/output/og/${t.title}.png"/>
               <meta name="twitter:image:src" content="${e.origin}/output/og/${t.title}.png" />
 
