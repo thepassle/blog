@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "npm run build && netlify dev",
+    "start": "npm run build && netlify dev --dir=public",
+    "dev": "netlify dev",
     "build": "npm run md-to-html && npm run bundle-sw",
     "deploy": "npm run build && netlify deploy --build --dir=public --prod",
     "md-to-html": "node md-to-html.js",
@@ -22,6 +23,7 @@
     "front-matter": "4.0.2",
     "marked": "11.1.1",
     "marked-highlight": "2.1.0",
+    "netlify-cli": "17.15.1",
     "puppeteer": "21.7.0",
     "shikiji": "0.9.19"
   }

@@ -126,7 +126,7 @@ export function Html({title, children, slots}) {
           }
 
           pre {
-            overflow: scroll;
+            overflow: auto;
           }
 
           blockquote {
@@ -225,8 +225,26 @@ export function Html({title, children, slots}) {
             font-weight: 700;
           }
 
-          .selected {
+          :target + dd {
             text-decoration: underline;
+          }
+
+          .post-loading-title {
+            height: 1.5em;
+            width: 60%;
+            background-color: #eee;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          .post-loading-bar {
+            height: 1em;
+            width: 100%;
+            background-color: #eee;
+            margin-top: 12px;
+            margin-bottom: 12px;
           }
 
           @media (max-width: 600px) {

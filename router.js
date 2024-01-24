@@ -1,7 +1,26 @@
-import { html, Router, Slot } from 'swtl';
+import { html, Router, Slot, Await, when } from 'swtl';
 import { Html } from './src/Html.js';
 import { title } from './src/utils.js';
 import { ENV } from './env.js';
+
+function RenderPost({promise}) {
+  return html`
+    <${Await} promise=${() => promise.then(b => b.text())}>
+      ${(status, data, error) => html`
+        ${when(status.pending, () => html`
+          <div class="post-loading-title"></div>
+          <div class="loading-content">
+            ${Array.from({ length: Math.floor(Math.random() * 11) + 5 }, () => Math.random()).map(i => html`
+              <div style="width: ${Math.floor(Math.random() * 11) + 90}%" class="post-loading-bar"></div>
+            `)}
+          </div>
+        `)}
+        ${when(status.error, () => html`<p>Failed to fetch blog.</p>`)}
+        ${when(status.success, () => data)}
+      `}
+    <//>
+  `
+}
 
 export const router = new Router({
   routes: [
@@ -64,7 +83,7 @@ export const router = new Router({
             <//>
 
             <article class="post">
-              ${blog}
+              <${RenderPost} promise=${blog}/>
             </article>
           <//>
         `
@@ -89,21 +108,20 @@ export const router = new Router({
     {
       path: '/definitions',
       render: ({url, params, query, request}) => { 
+
         return html`
           <${Html} title="Definitions">
             <h2>Definitions</h2>
             <article class="post">
               <dl>
                 <dt id="buildless-development"><a href="#buildless-development">Buildless development</a></dt>
-                <dd class="${url.hash === '#buildless-development' ? 'selected' : ''}">Local development using native ESM and web standards; code that you write runs in the browser without any transformation. Note that this does not include Vite; Vite does a bunch of non-standard transformations and (pre-)bundling out of the box.</dd>
-              </dl>
-              <dl>
+                <dd>Local development using native ESM and web standards; code that you write runs in the browser without any transformation. Note that this does not include Vite; Vite does a bunch of non-standard transformations and (pre-)bundling out of the box.</dd>
+                
                 <dt id="swsr"><a href="#swsr">SWSR</a></dt>
-                <dd class="${url.hash === '#swsr' ? 'selected' : ''}">Service Worker Side Rendering. SSR, but in a Service Worker.</dd>
-              </dl>
-              <dl>
+                <dd>Service Worker Side Rendering. SSR, but in a Service Worker.</dd>
+                
                 <dt id="swtl"><a href="#swtl">SWTL</a></dt>
-                <dd class="${url.hash === '#swtl' ? 'selected' : ''}">Service Worker Templating Language.</dd>
+                <dd>Service Worker Templating Language.</dd>
               </dl>
             </article>
           <//>
@@ -141,7 +159,7 @@ export const router = new Router({
             <//>
 
             <article class="post">
-              ${thought}
+              <${RenderPost} promise=${thought}/>
             </article>
           <//>
         `
