@@ -149,9 +149,13 @@ These options work well for the following scenario:
 
 ![happy scenario](https://i.imgur.com/8M0yXCf.jpeg)
 
+In this scenario, version 1.0.0 of the app deploys with a `navigator.serviceWorker.register('./sw.js')` call. The user visits version 1.0.0 of the app, so the service worker gets installed. Then in version 2.0.0 of the app, the service worker is removed via `navigator.serviceWorker.unregister()`. The user visits the app again when the app is on version 2.2.0, which contains the unregistration of the service worker, and so the user no longer has the service worker; the service worker is removed successfully.
+
 However, consider the following scenario:
 
 ![unhappy scenario](https://i.imgur.com/eRxQpOy.jpeg)
+
+In this scenario, the user visits version 1.1.0 of the app, which contains the service worker registration; the service worker gets installed. In version 2.0.0 the app removes the service worker registration, and starts calling `unregister()`. The user does not visit the app during this time. Then in version 3.0.0, the call to `navigator.serviceWorker.unregister()` is removed from the code. The user only visits the app again on version 3.1.0, which no longer has the unregister call in the code, meaning that the user will still have the service worker they got installed on version 1.1.0; the service worker is not removed successfully.
 
 So the question here is: when can you ever get rid of that code? When can you ever be sure that all your users have the noop service worker installed? And... then what happens to the noop service worker? Do they just have that installed forever? One way to achieve this is by basing it on analytics, but I wondered if there wasn't a different way of achieving this. For example, what if the service worker _itself_ would have some kind of keepalive check built-in? 
 
