@@ -14,7 +14,9 @@ At work, we use microfrontends for our frontend features. These features get dep
 https://cdn.ing.com/ing-web/2.44.0/es-modules/button.js
 ```
 
-The way this works is that features have full autonomy of their project and their dependencies when they are deployed. Imports to dependencies in a features source code get rewritten to a versioned URL of the dependency. Consider the following example:
+The way this works is that features have full autonomy of their project and their dependencies when they are deployed. This has really helped us scale our already very large monolithic application by decentralizing the release cycle of our feature teams, while at the same time reducing the friction of the application's release process.
+
+Imports to dependencies in a features source code get rewritten to a versioned URL of the dependency. Consider the following example:
 
 ```
 feature-a@1.0.0
@@ -29,7 +31,7 @@ https://cdn.ing.com/ing-web/2.44.0/es-modules/index.js
 https://cdn.ing.com/ing-lib-ow/4.0.0/es-modules/index.js
 ```
 
-This is nice, because **feature-a** is totally in control of their project and dependencies. However, this leads to a problem when features come together in apps. If we have many different features, **feature-a**, **feature-b**, **feature-c**, and they all depend on a different version of ing-web:
+This is nice, because **feature-a** is totally in control of their project and dependencies. However, this leads to a problem when features come together in apps. Imagine if we have many different features in the app, **feature-a**, **feature-b**, **feature-c**, and they all depend on a different version of ing-web:
 
 ```
 feature-a@1.0.0
@@ -111,6 +113,8 @@ And in the `index.html` of our app, we register the service worker:
   navigator.serviceWorker.register('./sw.js');
 </script>
 ```
+
+This is nice, because the service worker is essentially a performance improving progressive enhancement; if we'd remove it, we just fall back to the default behavior, and everything still works.
 
 ## So what are you getting at?
 
