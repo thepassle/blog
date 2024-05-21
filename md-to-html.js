@@ -20,7 +20,7 @@ import {
 
 const highlighter = await getHighlighter({
   themes: ['nord'],
-  langs: ['javascript', 'html'],
+  langs: ['javascript', 'html', 'rust', 'ts'],
 });
 
 const allPosts = [];
