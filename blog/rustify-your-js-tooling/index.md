@@ -6,17 +6,17 @@ updated: 2024-05-21
 
 # Rustify your js tooling
 
-A big part of my work revolves around JavaScript tooling, and as such it's important to keep an eye on the ecosystem and see where things are going. It's no secret that recently lots of projects are native-ying (_?? is that a word_) parts of their codebase, or even rewriting them to native languages altogether. Esbuild is one of the first popular and successful examples of this, which was written in Go. Other examples are Rspack and Turbopack, which are both Rust-based alternatives to Webpack, powered by SWC ("Speedy Web Compiler"). There's also Rolldown, a Rust-based alternative to Rollup powered by OXC ("The JavaScript Oxidation Compiler"), but Rollup itself is also native-ying (_?? no really, is it?_) parts of their codebase and recently started using SWC for parts of their codebase. And finally, there are Oxlint (powered by OXC) and Biome as Rust-based alternatives for Eslint and Prettier respectively.
+A big part of my work revolves around JavaScript tooling, and as such it's important to keep an eye on the ecosystem and see where things are going. It's no secret that recently lots of projects are native-ying (??) parts of their codebase, or even rewriting them to native languages altogether. [Esbuild](https://esbuild.github.io/) is one of the first popular and successful examples of this, which was written in Go. Other examples are [Rspack](https://www.rspack.dev/) and [Turbopack](https://turbo.build/pack), which are both Rust-based alternatives to Webpack, powered by [SWC](https://swc.rs/) ("Speedy Web Compiler"). There's also [Rolldown](https://rolldown.rs/), a Rust-based alternative to Rollup powered by [OXC](https://oxc-project.github.io/) ("The JavaScript Oxidation Compiler"), but [Rollup](https://rollupjs.org/) itself is also native-ying (??) parts of their codebase and recently started using SWC for parts of their codebase. And finally, there are [Oxlint](https://oxc-project.github.io/docs/guide/usage/linter.html) (powered by OXC) and [Biome](https://biomejs.dev/) as Rust-based alternatives for [Eslint](https://eslint.org/) and [Prettier](https://prettier.io/) respectively.
 
 Having said all that, there definitely seems to be a big push to move lots of JavaScript tooling to Rust, and as mentioned above, as someone working on JavaScript tooling it's good to stick with the times a bit, so I've been keeping a close eye on these developments and learning bits of Rust here and there in my spare time. While I've built a couple of hobby projects with Rust, for a long time I haven't really been able to really apply my Rust knowledge at work, or other tooling projects. One of the big reasons for that was that a lot of the necessary building blocks either simply weren't available yet, or not user-friendly (for a mostly mainly JS dev like your boy) enough.
 
 That has changed.
 
-Notably by projects like OXC and Napi-rs, and these projects combined make for an absolute powerhouse for tooling. A lot of the tooling I work on have to do with some kind of analysis, AST parsing, module graph crawling, codemodding, and other dev tooling related stuff; but a lot of very AST-heavy stuff. OXC provides some really great projects to help with this, and I'll namedrop a few of them here.
+Notably by projects like OXC and [Napi-rs](https://napi.rs/), and these projects combined make for an absolute powerhouse for tooling. A lot of the tooling I work on have to do with some kind of analysis, AST parsing, module graph crawling, codemodding, and other dev tooling related stuff; but a lot of very AST-heavy stuff. OXC provides some really great projects to help with this, and I'll namedrop a few of them here.
 
 ## Lil bit of namedropping
 
-Starting off with **oxc_module_lexer**. Admittedly not an actual lexer; it actually does do a full parse of the code, but achieves the same result as the popular `es-module-lexer`, but made very easy to use in Rust. If you're not a dummy like me, you're probably able to get `es-module-lexer` up and running in Rust. For me, it takes days of fiddling around, not knowing what I'm doing, and getting frustrated. I just want to install a crate that works and be on my way and write some code. There is also a fork of `es-module-lexer` made by the creator of Parcel, but it's not actually published on crates.io, and so you have to install it via a Github link, which makes me a bit squeemish in terms of versioning/breakage, so just being able to use `oxc_module_lexer` is really great. Very useful for _lots_ of tooling. Here's a small example:
+Starting off with [**oxc_module_lexer**](https://crates.io/crates/oxc_module_lexer). Admittedly not an actual lexer; it actually does do a full parse of the code, but achieves the same result as the popular `es-module-lexer`, but made very easy to use in Rust. If you're not a dummy like me, you're probably able to get `es-module-lexer` up and running in Rust. For me, it takes days of fiddling around, not knowing what I'm doing, and getting frustrated. I just want to install a crate that works and be on my way and write some code. There is also a fork of `es-module-lexer` made by the creator of Parcel, but it's not actually published on crates.io, and so you have to install it via a Github link, which makes me a bit squeemish in terms of versioning/breakage, so just being able to use `oxc_module_lexer` is really great. Very useful for _lots_ of tooling. Here's a small example:
 
 ```rust
 let allocator = Allocator::default();
@@ -24,7 +24,7 @@ let ret = Parser::new(&allocator, &source, SourceType::default()).parse();
 let ModuleLexer { exports, imports, .. } = ModuleLexer::new().build(&ret.program);
 ```
 
-Next up there's **oxc_resolver** which implements node module resolution in Rust, super useful to have available in Rust:
+Next up there's [**oxc_resolver**](https://crates.io/crates/oxc_resolver) which implements node module resolution in Rust, super useful to have available in Rust:
 
 ```rust
 let options = ResolveOptions {
@@ -37,7 +37,7 @@ let resolver = Resolver::new(options);
 let resolved = resolver.resolve(&importer, importee).unwrap();
 ```
 
-And finally **oxc_parser**, which parses JS/TS code and gives you the AST so you can do some AST analysis:
+And finally [**oxc_parser**](https://crates.io/crates/oxc_parser), which parses JS/TS code and gives you the AST so you can do some AST analysis:
 
 ```rust
 let ret = Parser::new(
