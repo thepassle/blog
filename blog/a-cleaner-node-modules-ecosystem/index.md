@@ -10,7 +10,7 @@ There are many jokes in the software development ecosystem about the size of `no
 
 ![Heaviest objects in the world ranked from lightest to heaviest starting with the sun a neutron star a black hole and finally node modules](https://imgur.com/E0zycbs.png)
 
-A lot of people have spoken up about this recently, and this has caused a great initiative to form in the shape of the [e18e community](https://e18e.dev/), where a bunch of incredibly talented, like-minded people are actively working on creating a cleaner, healthier, and more performant ecosystem. I should also note that the e18e initiative is **not only** about countering package bloat, there's a lot of wonderful work going on to improve runtime performance of packages as well, but in this blog I'll be mainly addressing the `node_modules` situation.
+A lot of people have spoken up about this recently, and this has caused a great initiative to form in the shape of the [e18e community](https://e18e.dev/), where a bunch of talented, like-minded people are actively working on creating a cleaner, healthier, and more performant ecosystem. I should also note that the e18e initiative is **not only** about countering package bloat, there's a lot of important work going on to improve runtime performance of packages as well, but in this blog I'll be mainly addressing the `node_modules` situation.
 
 ## How do we fix this situation the ecosystem is in?
 
@@ -22,7 +22,7 @@ Package bloat can be a very tricky thing to keep track of; you install a depende
 
 And I wholeheartedly agree with that. If we're to counter package bloat, we're gonna need tooling; nobody wants to do these things manually, we need automation.
 
-Fortunately, there are many great projects being worked on to achieve this. The list at [e18e - resources](https://e18e.dev/guide/resources.html) is a good overview of tools that you can use in your projects, but in this blog I'd like to discuss a couple I've personally been involved with and worked on.
+Fortunately, there are many projects being worked on to achieve this. The list at [e18e - resources](https://e18e.dev/guide/resources.html) is a good overview of tools that you can use in your projects, but in this blog I'd like to discuss a couple I've personally been involved with and worked on.
 
 ## Module Replacements
 
