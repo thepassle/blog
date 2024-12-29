@@ -288,7 +288,7 @@ export function Html({title, children, slots}) {
           <ul class="social-links">
             <li><a target="_blank" href="https://github.com/thepassle">Github</a></li>
             <li><a target="_blank" href="https://mastodon.social/@passle">Mastodon</a></li>
-            <li><a target="_blank" href="https://twitter.com/passle_">Twitter</a></li>
+            <li><a target="_blank" href="https://bsky.app/profile/passle.dev">Bluesky</a></li>
             <li><a target="_blank" href="/rss">RSS</a></li>
           </ul>
           <div>
